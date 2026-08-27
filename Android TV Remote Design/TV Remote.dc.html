@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&amp;display=swap" rel="stylesheet">
+<style>
+  * { box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+  body { margin: 0; background: #000000; font-family: 'Sora', system-ui, sans-serif; }
+  a { color: #FFFFFF; }
+  a:hover { color: #B3B3B3; }
+  @keyframes ripple { from { transform: scale(.6); opacity: .5 } to { transform: scale(2.2); opacity: 0 } }
+  @keyframes toastIn { from { opacity: 0; transform: translateY(8px) } to { opacity: 1; transform: translateY(0) } }
+</style>
+</helmet>
+<div style="width: 390px; min-height: 844px; margin: 0 auto; background: #000000; color: #FFFFFF; display: flex; flex-direction: column; padding: 0 22px 30px; position: relative; overflow: hidden;">
+
+  <div style="position: absolute; inset: 0; pointer-events: none; background-image: linear-gradient(#ffffff0a 1px, transparent 1px), linear-gradient(90deg, #ffffff0a 1px, transparent 1px); background-size: 26px 26px; mask-image: radial-gradient(80% 50% at 50% 0%, #000 0%, transparent 75%); left: -6px; top: 51px"></div>
+
+  <div style="display: flex; align-items: center; justify-content: space-between; padding: 52px 0 22px; position: relative;">
+    <div style="display: flex; flex-direction: column; gap: 5px;">
+      <div style="display: flex; align-items: center; gap: 7px;">
+        <span style="width: 7px; height: 7px; border-radius: 99px; background: #FFFFFF;"></span>
+        <span style="font-size: 11px; letter-spacing: .18em; text-transform: uppercase; color: #8A8A8A;">Connected</span>
+      </div>
+      <div style="font-size: 21px; font-weight: 600; letter-spacing: -.02em;">Ace Remote&nbsp;</div>
+    </div>
+    <button onClick="{{ onPower }}" style="width: 46px; height: 46px; border-radius: 99px; border: 1px solid #2E2E2E; background: #0A0A0A; color: #FFFFFF; display: grid; place-items: center; cursor: pointer;" style-hover="background:#161616">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 3v9"></path><path d="M18.4 6.6a9 9 0 1 1-12.8 0"></path></svg>
+    </button>
+  </div>
+
+  <div style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; position: relative;">
+    
+    <button onClick="{{ onYouTube }}" style="aspect-ratio: 1; border-radius: 18px; border: 1px solid #FFFFFF; background: #FFFFFF; display: grid; place-items: center; cursor: pointer; padding: 12px; overflow: hidden;" style-active="transform:scale(.94)">
+      
+    <img src="./oip-3223839054-mt9mm6td-6q0l.jpg" alt="YouTube" style="width: 112%; height: 112%; object-fit: contain;"></button><button onClick="{{ onHotstar }}" style="aspect-ratio: 1; border-radius: 18px; border: 1px solid #FFFFFF; background: #FFFFFF; display: grid; place-items: center; cursor: pointer; padding: 0; overflow: hidden;" style-active="transform:scale(.94)">
+      <img src="uploads/pasted-1787718793456-0.png" alt="Hotstar" style="width: 128%; height: 128%; object-fit: contain;">
+    </button>
+    <button onClick="{{ onPrime }}" style="aspect-ratio: 1; border-radius: 18px; border: 1px solid #FFFFFF; background: #FFFFFF; display: grid; place-items: center; cursor: pointer; padding: 6px; overflow: hidden;" style-active="transform:scale(.94)">
+      
+    <img src="uploads/pasted-1787718813351-0.png" alt="Prime Video" style="width: 116%; height: 116%; object-fit: contain;"></button>
+    <button onClick="{{ onNetflix }}" style="aspect-ratio: 1; border-radius: 18px; border: 1px solid #FFFFFF; background: #FFFFFF; display: grid; place-items: center; cursor: pointer; padding: 10px; overflow: hidden;" style-active="transform:scale(.94)">
+      <img src="uploads/pasted-1787718827167-0.png" alt="Netflix" style="width: 100%; height: 100%; object-fit: contain;">
+    </button>
+  </div>
+  <div style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; margin-top: 8px; font-size: 10px; letter-spacing: .04em; color: #8A8A8A; text-align: center;">
+    <div>YouTube</div>
+    <div>Hotstar</div>
+    <div>Prime</div>
+    <div>Netflix</div>
+  </div>
+
+  <div style="height: 1px; background: #262626; margin: 26px 0 22px;"></div>
+
+  <div style="position: relative; display: grid; place-items: center;">
+    <div style="width: 258px; height: 258px; border-radius: 50%; background: radial-gradient(circle at 50% 32%, #2A2A2A 0%, #171717 46%, #0A0A0A 78%, #000000 100%); border: 1px solid #444444; display: grid; place-items: center; position: relative; box-shadow: 0 0 60px -14px #ffffff2e, 0 26px 50px -24px #000000, inset 0 2px 0 #ffffff2b, inset 0 -14px 26px -14px #ffffff0f;">
+      <button onClick="{{ onUp }}" style="position: absolute; top: 0; left: 50%; transform: translateX(-50%); width: 92px; height: 78px; border: 0; background: transparent; color: #7A7A7A; cursor: pointer; display: grid; place-items: start center; padding-top: 16px;" style-active="color:#fff">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 14l6-6 6 6"></path></svg>
+      </button>
+      <button onClick="{{ onDown }}" style="position: absolute; bottom: 0; left: 50%; transform: translateX(-50%); width: 92px; height: 78px; border: 0; background: transparent; color: #7A7A7A; cursor: pointer; display: grid; place-items: end center; padding-bottom: 16px;" style-active="color:#fff">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 10l6 6 6-6"></path></svg>
+      </button>
+      <button onClick="{{ onLeft }}" style="position: absolute; left: 0; top: 50%; transform: translateY(-50%); width: 78px; height: 92px; border: 0; background: transparent; color: #7A7A7A; cursor: pointer; display: grid; place-items: center start; padding-left: 16px;" style-active="color:#fff">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 6l-6 6 6 6"></path></svg>
+      </button>
+      <button onClick="{{ onRight }}" style="position: absolute; right: 0; top: 50%; transform: translateY(-50%); width: 78px; height: 92px; border: 0; background: transparent; color: #7A7A7A; cursor: pointer; display: grid; place-items: center end; padding-right: 16px;" style-active="color:#fff">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 6l6 6-6 6"></path></svg>
+      </button>
+      <button onClick="{{ onOk }}" style="width: 104px; height: 104px; border-radius: 50%; border: 0; background: radial-gradient(90% 90% at 50% 12%, #FFFFFF 0%, #F2F2F2 58%, #C9C9C9 100%); color: #000000; font-family: inherit; font-size: 20px; font-weight: 600; letter-spacing: .16em; cursor: pointer; text-decoration-line: none; font-style: italic; box-shadow: 0 0 44px -6px #ffffff55, 0 16px 26px -12px #000000d9, inset 0 -3px 6px #00000026, inset 0 2px 2px #ffffff" style-active="transform:scale(.95)">OK</button>
+    </div>
+  </div>
+
+  <div style="display: flex; gap: 10px; margin-top: 26px;">
+    <sc-for list="{{ pills }}" as="p" hint-placeholder-count="4">
+      <button onClick="{{ p.press }}" title="{{ p.label }}" style="flex: 1; height: 52px; border-radius: 14px; border: 1px solid #2E2E2E; background: #0A0A0A; color: #C9C9C9; display: grid; place-items: center; cursor: pointer;" style-active="background:#FFFFFF;color:#000000">
+        {{ p.icon }}
+      </button>
+    </sc-for>
+  </div>
+
+  <div style="display: flex; gap: 12px; margin-top: 12px; align-items: stretch;">
+    <div onPointerDown="{{ onDragStart }}" onPointerMove="{{ onDragMove }}" onPointerUp="{{ onDragEnd }}" onPointerCancel="{{ onDragEnd }}" style="flex: 1; min-height: 152px; display: flex; gap: 14px; background: #0A0A0A; border: 1px solid #2E2E2E; border-radius: 16px; padding: 16px 18px; cursor: ns-resize; touch-action: none; user-select: none;">
+      <div style="flex: 1; display: flex; flex-direction: column; justify-content: space-between;">
+        <div style="font-size: 10px; letter-spacing: .22em; color: #8A8A8A; text-transform: uppercase;">Volume</div>
+        <div style="font-family: 'Share Tech Mono', ui-monospace, monospace; font-size: 56px; line-height: .82; color: #2E9BFF; letter-spacing: -.01em;">{{ volLabel }}</div>
+        <div style="display: flex; align-items: center; gap: 6px; font-size: 9.5px; letter-spacing: .16em; color: #5A5A5A; text-transform: uppercase;">
+          <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 4v16"></path><path d="M7 9l5-5 5 5"></path><path d="M7 15l5 5 5-5"></path></svg>
+          Drag to set
+        </div>
+      </div>
+      <div style="width: 30px; display: flex; flex-direction: column-reverse; gap: 3px;">
+        <sc-for list="{{ segs }}" as="s" hint-placeholder-count="18">
+          <div style="flex: 1; border-radius: 2px; background: {{ s.bg }};"></div>
+        </sc-for>
+      </div>
+    </div>
+    <button onClick="{{ onMute }}" style="width: 58px; border-radius: 16px; border: 1px solid #2E2E2E; background: {{ muteBg }}; color: {{ muteFg }}; display: grid; place-items: center; cursor: pointer;">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M11 5 6 9H3v6h3l5 4V5z"></path><path d="m17 9 4 6"></path><path d="m21 9-4 6"></path></svg>
+    </button>
+  </div>
+
+  <div style="margin-top: 14px; display: flex; gap: 12px;">
+    <button onClick="{{ onMic }}" style="flex: 1; height: 56px; border-radius: 14px; border: 0; background: #FFFFFF; color: #000000; font-family: inherit; font-size: 13px; font-weight: 600; letter-spacing: .02em; display: flex; align-items: center; justify-content: center; gap: 9px; cursor: pointer;" style-active="background:#D9D9D9">
+      <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="2" width="6" height="11" rx="3"></rect><path d="M5 11a7 7 0 0 0 14 0"></path><path d="M12 18v4"></path></svg>
+      <img src="uploads/Screenshot (17).png" alt="Google" style="height: 22px; width: auto; object-fit: contain;">
+    </button>
+    <button onClick="{{ onKeyboard }}" style="width: 58px; border-radius: 14px; border: 1px solid #2E2E2E; background: #0A0A0A; color: #C9C9C9; display: grid; place-items: center; cursor: pointer;" style-active="background:#FFFFFF;color:#000000">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><rect x="2" y="6" width="20" height="12" rx="2"></rect><path d="M6 10h.01M10 10h.01M14 10h.01M18 10h.01M8 14h8"></path></svg>
+    </button>
+  </div>
+
+  <div style="min-height: 34px; margin-top: 18px; display: grid; place-items: center;">
+    {{ toast }}
+  </div>
+</div>
+
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;$preview&quot;:{&quot;width&quot;:390,&quot;height&quot;:844}}">
+class Component extends DCLogic {
+  state = { volume: 18, muted: false, toast: null, seq: 0 };
+
+  say(msg) {
+    this.setState(s => ({ toast: msg, seq: s.seq + 1 }));
+  }
+
+  renderVals() {
+    const accent = '#FFFFFF';
+    const icon = (d, extra) => React.createElement('svg',
+      { width: 19, height: 19, viewBox: '0 0 24 24', fill: 'none', stroke: 'currentColor', strokeWidth: 1.9, strokeLinecap: 'round', strokeLinejoin: 'round' },
+      d.map((p, i) => React.createElement('path', { key: i, d: p })), extra);
+
+    const pills = [
+      { label: 'Back', press: () => this.say('Back'), icon: icon(['M9 14 4 9l5-5', 'M4 9h10a6 6 0 0 1 0 12h-3']) },
+      { label: 'Home', press: () => this.say('Home'), icon: icon(['M3 10.5 12 3l9 7.5', 'M6 10v10h12V10']) },
+      { label: 'Guide', press: () => this.say('Menu'), icon: icon(['M4 6h16', 'M4 12h16', 'M4 18h10']) },
+      { label: 'Play / Pause', press: () => this.say('Play / Pause'), icon: icon(['M9 5v14', 'M15 5v14']) }
+    ];
+
+    const clamp = v => Math.max(0, Math.min(100, v));
+    const setVol = (v) => this.setState(s => ({ volume: clamp(v), muted: false, toast: 'Volume ' + clamp(v), seq: s.seq + 1 }));
+
+    const SEGS = 18;
+    const lit = this.state.muted ? 0 : Math.round(this.state.volume / 100 * SEGS);
+    const segs = Array.from({ length: SEGS }, (_, i) => ({
+      bg: i < lit ? (i > SEGS - 4 ? '#7CC4FF' : '#2E9BFF') : '#1A1A1A'
+    }));
+
+    const toast = this.state.toast
+      ? React.createElement('div', {
+          key: this.state.seq,
+          style: {
+            animation: 'toastIn .22s ease both', fontSize: 11.5, letterSpacing: '.14em',
+            textTransform: 'uppercase', color: '#000000', border: '1px solid #FFFFFF',
+            background: '#FFFFFF', padding: '8px 16px', borderRadius: 99
+          }
+        }, this.state.toast)
+      : React.createElement('div', { style: { fontSize: 11.5, letterSpacing: '.14em', textTransform: 'uppercase', color: '#5A5A5A' } }, 'Ready');
+
+    return {
+      pills, toast,
+      onYouTube: () => this.say('Launching YouTube TV'),
+      onHotstar: () => this.say('Launching Hotstar'),
+      onPrime: () => this.say('Launching Prime Video'),
+      onNetflix: () => this.say('Launching Netflix'),
+      segs,
+      volLabel: this.state.muted ? '--' : String(this.state.volume).padStart(2, '0'),
+      muteBg: this.state.muted ? '#FFFFFF' : '#0A0A0A',
+      muteFg: this.state.muted ? '#000000' : '#C9C9C9',
+      onDragStart: (e) => {
+        e.currentTarget.setPointerCapture(e.pointerId);
+        this._drag = { y: e.clientY, v: this.state.muted ? 0 : this.state.volume };
+      },
+      onDragMove: (e) => {
+        if (!this._drag) return;
+        setVol(this._drag.v + Math.round((this._drag.y - e.clientY) / 2.6));
+      },
+      onDragEnd: () => { this._drag = null; },
+      onMute: () => this.setState(s => ({ muted: !s.muted, toast: s.muted ? 'Unmuted' : 'Muted', seq: s.seq + 1 })),
+      onOk: () => this.say('Select'),
+      onUp: () => this.say('Up'),
+      onDown: () => this.say('Down'),
+      onLeft: () => this.say('Left'),
+      onRight: () => this.say('Right'),
+      onPower: () => this.say('Power'),
+      onMic: () => this.say('Listening…'),
+      onKeyboard: () => this.say('Keyboard')
+    };
+  }
+}
+</script>
+</body>
+</html>
