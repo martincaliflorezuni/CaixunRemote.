@@ -1,5 +1,6 @@
 package dev.ayaan.tvremote.remote
 
+import android.util.Log
 import dadb.Dadb
 import dev.ayaan.tvremote.net.AdbKeyStore
 import dev.ayaan.tvremote.proto.RemoteDirection
@@ -53,7 +54,8 @@ class FireTvClient(
                 dadb = connection
                 _state.value = Link.Ready(null)
             } catch (e: Exception) {
-                _state.value = Link.Failed(e.message ?: e.javaClass.simpleName)
+                Log.w(TAG, "ADB connection to $host failed", e)
+                _state.value = Link.Failed(describe(e))
             }
         }
     }

@@ -1,6 +1,7 @@
 package dev.ayaan.tvremote.remote
 
 import android.os.Build
+import android.util.Log
 import com.google.protobuf.ByteString
 import dev.ayaan.tvremote.discovery.TvDiscovery
 import dev.ayaan.tvremote.net.CertStore
@@ -107,7 +108,8 @@ class RemoteClient(
                 output = s.outputStream
                 read(s)
             } catch (e: Exception) {
-                _state.value = Link.Failed(e.message ?: e.javaClass.simpleName)
+                Log.w(TAG, "Control connection to $host failed", e)
+                _state.value = Link.Failed(describe(e))
             } finally {
                 closeSocket()
             }

@@ -17,8 +17,10 @@ import dev.ayaan.tvremote.remote.KnownApp
 import dev.ayaan.tvremote.remote.Link
 import dev.ayaan.tvremote.remote.RemoteClient
 import dev.ayaan.tvremote.remote.Session
+import dev.ayaan.tvremote.remote.TAG
 import dev.ayaan.tvremote.remote.TextPrompt
 import dev.ayaan.tvremote.remote.VoiceRecorder
+import dev.ayaan.tvremote.remote.describe
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
@@ -30,6 +32,7 @@ import java.io.ByteArrayInputStream
 import java.security.cert.CertificateFactory
 import java.security.cert.X509Certificate
 import android.util.Base64
+import android.util.Log
 
 enum class Step { Discover, EnterCode, Control }
 
@@ -301,12 +304,15 @@ class RemoteViewModel(app: Application) : AndroidViewModel(app) {
 
     private fun deviceName() = "${android.os.Build.MANUFACTURER} ${android.os.Build.MODEL}"
 
-    private fun reason(e: Throwable): String = when (e) {
-        is Secret.BadCode -> e.message ?: "That code didn't work"
-        is PairingClient.Rejected -> e.message ?: "The TV refused to pair"
-        is java.net.SocketTimeoutException -> "The TV didn't answer. Check it's awake and on this Wi-Fi."
-        is java.net.ConnectException -> "Couldn't reach that address on this network."
-        else -> e.message ?: "Something went wrong"
+    private fun reason(e: Throwable): String {
+        Log.w(TAG, "Session failure", e)
+        return when (e) {
+            is Secret.BadCode -> e.message ?: "That code didn't work"
+            is PairingClient.Rejected -> e.message ?: "The TV refused to pair"
+            // Transport failures read the same wherever they surface, so both
+            // the pairing path and the two session adapters share one mapper.
+            else -> describe(e)
+        }
     }
 
     private companion object {
